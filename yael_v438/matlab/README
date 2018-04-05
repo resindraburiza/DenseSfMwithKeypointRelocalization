@@ -1,0 +1,18 @@
+This package is a subset of the Yael package. It offers a pre-compiled Matlab 
+interface to some of the Yael functions. 
+
+On most architecture, running the default Make command (Make.m) should work 
+either from Matlab or from the command line, i.e.:
+1) Either launch matlab and launch
+> Make
+2) Or execute the file Make.m as a bash file:
+bash> bash Make.m
+
+In order to adjust the configuration, you can also execute Configure m-file
+from Matlab. This will override the Make.m
+
+
+For the full C and python interfaces, or to get the Mex-files corresponding 
+to the pre-compiled files, download the yael_vXXX.tar.gz file instead.
+
+

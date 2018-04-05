@@ -1,0 +1,33 @@
+
+# seul exemple en C 
+# mettre test_kmeans.c sur site
+
+# markup autres languages
+http://sphinx-doc.org/markup/code.html
+
+
+############  Matlab examples
+
+#### This will be the demo
+
+# get preprocessed struct array (small/big version of .mat)
+test/matlab/test_ivf_he.m 
+# display matches
+
+# beautify code
+test_hamming.m
+
+yael_pca.m
+
+
+############  Python examples
+
+### kmeans Python
+
+test_kmeans -> passer en ynumpy (merge w/ ynumpy)
+
+###### data: same package as above but retrieval with VLAD. 
+test_vlad_retrieval.py
+
+
+
