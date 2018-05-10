@@ -1,8 +1,5 @@
 function at_generate_matches4colmap(ii,imgs,feat_pth,match_pth,min_match,graph,score,finerlayer,coarselayerlevel,finelayerlevel)
 
-top = 5;
-top = top+1;
-
 N = length(imgs);
 [head1, tail1] = str_cut(imgs{ii},'.');
 f1cnn_matchfn = fullfile(match_pth,[head1 '.match.mat']);
@@ -10,9 +7,6 @@ Information = table;
 Information.EndNodes = {};
 Information.Homography = {};
 Information.Inlier_idx = {};
-
-% score = score(ii,:);
-% [sorted, idx] = sort(score,'descend');
 
 if ~exist(f1cnn_matchfn,'file')
     matches = cell(1,N);
@@ -22,7 +16,6 @@ if ~exist(f1cnn_matchfn,'file')
     r = load(f1cnn_matlabfn);
     cnn1 = r.cnn;
     for jj=ii+1:N
-        %     for jj = idx(2:top)
         if jj<ii
             continue;
         end
@@ -42,9 +35,6 @@ if ~exist(f1cnn_matchfn,'file')
             toc
         else
             tic
-            %             [match12,f1,f2,cnnfeat1,cnnfeat2] = at_coarse2fine_matching_relocalize(cnn1upsample,cnn2upsample,...
-            %                 cnn1,cnn2,finerlayer,coarselayerlevel,finelayerlevel);
-            %             [match12,f1,f2,cnnfeat1,cnnfeat2] = at_coarse2fine_matching(cnn1,cnn2,finerlayer,coarselayerlevel,finelayerlevel);
             [match12,f1,f2,cnnfeat1,cnnfeat2] = at_coarse2fine_matching_ext(cnn1,cnn2,coarselayerlevel,finelayerlevel);
             f1 = load(fullfile(feat_pth,[head1 '_relocalize.mat']));
             f1 = f1.f1;

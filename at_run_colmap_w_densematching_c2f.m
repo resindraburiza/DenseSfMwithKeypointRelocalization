@@ -1,3 +1,15 @@
+loc_path = [pth 'colmap/dense/'];
+loc_path_sparse = [pth 'colmap/sparse/'];
+imagenames = dir(fullfile(image_path,['*',image_format]));
+
+% working directory
+database_path = fullfile(loc_path,'database_dense.db');
+image_list_path = fullfile(loc_path,'imglist.txt');
+
+feature_path = fullfile(pth,'features_reloc/');
+match_path = fullfile(pth,'matches_reloc/');
+match_list_path = fullfile([match_path],'colmap_matches.txt');
+
 if ~exist('net','var')
     net = load('vd16_pitts30k_conv5_3_vlad_preL2_intra_white.mat');
     net = net.net;
@@ -79,23 +91,30 @@ if ~exist(fullfile(export_path,'images.txt'),'file')
     for ii=1:N
         fprintf(fopen('list.tmp','w'),'%s',imgs{ii});
         fprintf(fplist,'%s\n',imgs{ii});
-        cmd = sprintf('feature_importer --database_path ''%s'' --image_path ''%s'' --import_path ''%s'' --image_list_path ''list.tmp'' --SiftExtraction.upright 1 --SiftExtraction.max_num_orientations 1 --SiftExtraction.gpu_index 0', ...
-            database_path, image_path, feature_path);
+        cmd = sprintf('%sfeature_importer --database_path ''%s'' --image_path ''%s'' --import_path ''%s'' --image_list_path ''list.tmp'' --SiftExtraction.upright 1 --SiftExtraction.max_num_orientations 1 --SiftExtraction.gpu_index 0', ...
+            colmap_path,database_path, image_path, feature_path);
         system(cmd);
     end
     fclose(fplist);
     
     %  2. feature match loading
-    cmd = sprintf('matches_importer --database_path ''%s'' --match_list_path ''%s'' --match_type ''inliers''', ...
-        database_path, match_list_path);
+    cmd = sprintf('%smatches_importer --database_path ''%s'' --match_list_path ''%s'' --match_type ''raw''', ...
+        colmap_path,database_path, match_list_path);
     system(cmd);
     
-    cmd = sprintf('mapper --database_path ''%s'' --image_path ''%s'' --image_list_path ''%s'' --export_path ''%s'' --Mapper.multiple_models 0 --Mapper.ba_refine_focal_length 0 --Mapper.ba_refine_extra_params 0', ...
-        database_path, image_path, image_list_path, import_path);
+    cmd = sprintf('%smapper --database_path ''%s'' --image_path ''%s'' --image_list_path ''%s'' --export_path ''%s'' --Mapper.multiple_models 0 --Mapper.ba_refine_focal_length 0 --Mapper.ba_refine_extra_params 0', ...
+        colmap_path,database_path, image_path, image_list_path, import_path);
     system(cmd);
     
-    cmd = sprintf('model_converter --input_path ''%s'' --output_path ''%s'' --output_type ''TXT''', export_path, export_path);
+    cmd = sprintf('%smodel_converter --input_path ''%s'' --output_path ''%s'' --output_type ''TXT''', colmap_path, export_path, export_path);
     system(cmd);
+    
+    cmd = sprintf('%smodel_analyzer --path ''%s''',...
+        colmap_path, export_path);
+    [~,output] = system(cmd);
+    file = fopen([export_path 'model_properties.txt'],'w');
+    fprintf(file,output);
+    fclose(file);
     
 end
 

@@ -41,35 +41,12 @@ if size(ims,3)==1
     ims= cat(3,ims,ims,ims);
 end
 
-% if ~opts.useGPU
-%     ims_upsample(:,:,1)= ims(:,:,1) - network.meta.normalization.averageImage(1,1,1);
-%     ims_upsample(:,:,2)= ims(:,:,2) - network.meta.normalization.averageImage(1,1,2);
-%     ims_upsample(:,:,3)= ims(:,:,3) - network.meta.normalization.averageImage(1,1,3);
-%     
-%     %     ims = ims_upsample;
-%     ims = gpuArray(ims_upsample);
-%     ims = at_imageresize(ims,1600,1200);
-%     % --extract features
-%     %     relja_display('extracting features in upsample image (CPU mode)');
-%     relja_display('extracting features in full resolution mode');
-%     res = vl_simplenn(network, ims, [], [], simpleNnOpts{:});
-% else
-%     ims_proper(:,:,1)= ims(:,:,1) - network.meta.normalization.averageImage(1,1,1);
-%     ims_proper(:,:,2)= ims(:,:,2) - network.meta.normalization.averageImage(1,1,2);
-%     ims_proper(:,:,3)= ims(:,:,3) - network.meta.normalization.averageImage(1,1,3);
-%     
-%     ims = gpuArray(ims_proper);
-%     ims = at_imageresize(ims,1600,1200);
-%     % --extract features
-%     res = vl_simplenn(network, ims, [], [], simpleNnOpts{:});
-% end
-
 ims_proper(:,:,1)= ims(:,:,1) - network.meta.normalization.averageImage(1,1,1);
 ims_proper(:,:,2)= ims(:,:,2) - network.meta.normalization.averageImage(1,1,2);
 ims_proper(:,:,3)= ims(:,:,3) - network.meta.normalization.averageImage(1,1,3);
 
+ims_proper = at_imageresize(ims_proper,1600,1200);
 ims = gpuArray(ims_proper);
-ims = at_imageresize(ims,1600,1200);
 % --extract features
 res = vl_simplenn(network, ims, [], [], simpleNnOpts{:});
 
