@@ -19,7 +19,11 @@ reconstruct_sparse_colmap = true;
 
 % do you want to relocalize or not at all?
 global do_relocalize
-do_relocalize = false;
+do_relocalize = true;
+
+% max image size for the network [width,height]
+global maximsize
+maximsize = [1600,1200];
 
 % colmap_path. please comment out one of the colmap_path variable
 % for colmap 3.3 or older
@@ -40,6 +44,7 @@ image_path = pth;
 if ~visualizeonly
     at_run_colmap_w_densematching_c2f
     if reconstruct_sparse_colmap
+        clear net
         reconstruct_sparse
     end
 else

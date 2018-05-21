@@ -13,6 +13,7 @@
 %       datasets), you should set `batchSize` to 1.
 
 function cnnfeat = at_serialAllFeats_convfeat_sfm(net, imPath, feat_path, imageFns, outputlayer, varargin)
+global maximsize
 opts= struct(...
     'useGPU', true, ...
     'numThreads', 12, ...
@@ -45,7 +46,7 @@ ims_proper(:,:,1)= ims(:,:,1) - network.meta.normalization.averageImage(1,1,1);
 ims_proper(:,:,2)= ims(:,:,2) - network.meta.normalization.averageImage(1,1,2);
 ims_proper(:,:,3)= ims(:,:,3) - network.meta.normalization.averageImage(1,1,3);
 
-ims_proper = at_imageresize(ims_proper,1600,1200);
+ims_proper = at_imageresize(ims_proper,maximsize(1),maximsize(2));
 ims = gpuArray(ims_proper);
 % --extract features
 res = vl_simplenn(network, ims, [], [], simpleNnOpts{:});
