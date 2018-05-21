@@ -13,7 +13,7 @@ You can change the network with minor modification of the script.
 
 How to use:
 0. Precaution: The features extracted by CNN are saved in the drive and they are big (sometimes huge) in total. Make sure you have enough space in your drive.
-In this code, GPU plays important role. We use 1600x1200 image resolution for CNN feature extraction. If your GPU can't handle that resolution, change it in at_serialAllFeats_convfeat_sfm.m and change input argument of at_image_resize.
+In this code, GPU plays important role. We use 1600x1200 image resolution for CNN feature extraction. If your GPU can't handle that resolution, change the maximsize variable in main.m
 
 1. Prepare a folder with images of structure you want to reconstruct. The structure should look like this:
 
