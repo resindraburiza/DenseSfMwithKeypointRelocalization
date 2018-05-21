@@ -17,6 +17,10 @@ visualizeonly = false;
 % reconstruct sparse?
 reconstruct_sparse_colmap = true;
 
+% do you want to relocalize or not at all?
+global do_relocalize
+do_relocalize = false;
+
 % colmap_path. please comment out one of the colmap_path variable
 % for colmap 3.3 or older
 % colmap_path = '';
@@ -26,7 +30,7 @@ reconstruct_sparse_colmap = true;
 colmap_path = ['','colmap '];
 
 % image path
-pth = ['/mnt/extensionHDD/DenseSfMwithRelocalization/test_datasest/'];
+pth = ['/media/aresindra/local/DenseSfMwithRelocalization/test_datasest/'];
 
 % image_format
 image_format = '.jpg'; % this is case sensitive

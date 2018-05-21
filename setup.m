@@ -11,6 +11,7 @@ addpath([start_path '/relja_matlab']);
 addpath([start_path '/relja_matlab/matconvnet']);
 addpath([start_path '/relja']);
 addpath([start_path '/additional']);
+addpath([start_path '/lib']);
 
 switch computer
   case 'GLNXA64'

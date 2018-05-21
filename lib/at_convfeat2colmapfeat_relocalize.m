@@ -1,4 +1,5 @@
 function at_convfeat2colmapfeat_relocalize(net,img_pth,imfn,feat_pth,finerlayerlevel,coarselayerlevel,finelayerlevel)
+global do_relocalize
 if nargin < 4, finelayerlevel=3; end
 
 [head1, tail1] = str_cut(imfn,'.');
@@ -52,11 +53,16 @@ if ~exist(f1siftfn,'file')
         cnnlayer(finelayerlevel-i) = {tmp};
     end
 
-    f1 = relocalize_coarse2fine(f1,cnnlayer);
+    if do_relocalize
+        f1 = relocalize_coarse2fine(f1,cnnlayer);
+    end
     save('-v6',fullfile(feat_pth,[head1 '_relocalize.mat']),'f1');
     im1 = imread(fullfile(img_pth,imfn));
-    [f1,s1] = at_featureupsample(f1,size(cnnfeatfiner),size(im1));
-    
+    if do_relocalize
+        [f1,s1] = at_featureupsample(f1,size(cnnfeatfiner),size(im1));
+    else
+        [f1,s1] = at_featureupsample(f1,size(cnn1),size(im1));
+    end
     fp = fopen(f1siftfn,'w');
     dd = ones(1,128);
     fprintf(fp,'%d 128\n',size(f1,2));
