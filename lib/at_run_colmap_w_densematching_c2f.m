@@ -26,13 +26,6 @@ N = length(imgs);
 G = graph(zeros(N),imgs);
 G.Edges.Weight = [];
 
-database_path = fullfile(loc_path,'database.db');
-image_list_path = fullfile(loc_path,'imglist.txt');
-
-feature_path = fullfile(pth,'features_reloc/');
-match_path = fullfile(pth,'matches_reloc/');
-match_list_path = fullfile([match_path],'colmap_matches.txt');
-
 if ~exist(match_list_path,'file')
     
     for ii=1:N

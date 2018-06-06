@@ -1,3 +1,10 @@
+imagenames = dir(fullfile(image_path,['*',image_format]));
+imgs = {imagenames(:).name};
+N = length(imgs);
+feature_path = fullfile(pth,'features_reloc/');
+match_path = fullfile(pth,'matches_reloc/');
+
+
 for ii=1:N-1
     [head1, tail1] = str_cut(imgs{ii},'.');
     if top == 0
