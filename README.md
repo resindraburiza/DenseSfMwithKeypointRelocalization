@@ -3,6 +3,8 @@ Dense Structure-from-Motion with Keypoint Relocalization
 Dense feature extraction is done using CNN. It's dense but the drawback is that the feature point locations are located in grid patter. It means that the accuracy of keypoints are not in ideal position. To improve the keypoints accuracy, we implement keypoint relocalization based on coarse to fine method.
 
 Requirement:
+1. Please download the MatConvNet from here:
+http://www.vlfeat.org/matconvnet/
 1. Please download this network for this code: https://www.di.ens.fr/willow/research/netvlad/data/models/vd16_pitts30k_conv5_3_vlad_preL2_intra_white.mat
 Place it in the same directory as main.m
 You can change the network with minor modification of the script.
