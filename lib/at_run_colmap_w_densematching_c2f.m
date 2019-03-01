@@ -19,6 +19,13 @@ if ~exist('net','var')
     net.onGPU= true;
 end
 
+% netvlad score
+if top_netvlad == 0
+    score = [];
+else
+    score = compute_similarity_netVLAD(image_path, image_format);
+end
+
 imgs = {imagenames(:).name};
 N = length(imgs);
 
@@ -34,7 +41,7 @@ if ~exist(match_list_path,'file')
     end
     
     parfor ii=1:N-1
-        at_generate_matches4colmap(ii,imgs,feature_path,match_path,min_matches,G,[],finerlayerlevel,coarselayerlevel,finelayerlevel);
+        at_generate_matches4colmap(ii,imgs,feature_path,match_path,min_matches,top_netvlad,G,score,finerlayerlevel,coarselayerlevel,finelayerlevel);
     end
     
     if top > 0

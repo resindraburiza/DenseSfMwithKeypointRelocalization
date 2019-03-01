@@ -10,6 +10,7 @@ finerlayerlevel = 1;
 % define how you want to limit the match
 min_matches = 0; % leave it zero if we want to use all matches
 top = 0; % how many topN matches would you keep? leave it zero if all pair will be used
+top_netvlad = 0; % matching the dense SfM based on netvlad score (not exhaustively)
 
 % visualize only?
 visualizeonly = false;
@@ -29,7 +30,7 @@ maximsize = [1600,1200];
 % for colmap 3.3 or older
 % colmap_path = '';
 
-% for colmap 3.4 ['you_colmap_folder','colmap ']; -> you can leave it
+% for colmap 3.4 ['your_colmap_folder','colmap ']; -> you can leave it
 % blank if your colmap is already in PATH dir
 colmap_path = ['','colmap '];
 
