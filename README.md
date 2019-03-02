@@ -10,8 +10,10 @@ Place it in the same directory as main.m
 You can change the network with minor modification of the script.
 
 3. You need colmap on your machine. Read about it here https://colmap.github.io/
+For our paper, we use colmap 3.3.
 
 4. For the dataset, you can use test dataset provided by colmap. I recommend using South Building https://demuc.de/colmap/datasets/
+You can also try this dataset https://www.dropbox.com/sh/r1tuac039n1s1ej/AAA0AGFddW-UiX5fHSEaiQj6a?dl=0.
 
 How to use:
 0. Precaution: The features extracted by CNN are saved in the drive and they are big (sometimes huge) in total. Make sure you have enough space in your drive.
