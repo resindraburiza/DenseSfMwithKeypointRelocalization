@@ -5,13 +5,13 @@ Dense feature extraction is done using CNN. It's dense but the drawback is that 
 Requirement:
 1. Please download the MatConvNet from here:
 http://www.vlfeat.org/matconvnet/
-1. Please download this network for this code: https://www.di.ens.fr/willow/research/netvlad/data/models/vd16_pitts30k_conv5_3_vlad_preL2_intra_white.mat
+2. Please download this network for this code: https://www.di.ens.fr/willow/research/netvlad/data/models/vd16_pitts30k_conv5_3_vlad_preL2_intra_white.mat
 Place it in the same directory as main.m
 You can change the network with minor modification of the script.
 
-2. You need colmap on your machine. Read about it here https://colmap.github.io/
+3. You need colmap on your machine. Read about it here https://colmap.github.io/
 
-3. You can download a test dataset here https://www.dropbox.com/sh/0tgz6j374rnvmul/AABv5lfQJfN_qKUMhL2FKR6Ga?dl=0
+4. For the dataset, you can use test dataset provided by colmap. I recommend using South Building https://demuc.de/colmap/datasets/
 
 How to use:
 0. Precaution: The features extracted by CNN are saved in the drive and they are big (sometimes huge) in total. Make sure you have enough space in your drive.
