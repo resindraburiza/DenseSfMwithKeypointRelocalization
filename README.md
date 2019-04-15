@@ -1,5 +1,7 @@
 Dense Structure-from-Motion with Keypoint Relocalization
 
+[Project page: http://www.ok.sc.e.titech.ac.jp/res/DenseSfM/index.html]
+
 Dense feature extraction is done using CNN. It's dense but the drawback is that the feature point locations are located in grid patter. It means that the accuracy of keypoints are not in ideal position. To improve the keypoints accuracy, we implement keypoint relocalization based on coarse to fine method.
 
 Requirement:
