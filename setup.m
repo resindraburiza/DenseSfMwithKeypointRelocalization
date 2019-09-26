@@ -5,7 +5,7 @@ if ~exist('vl_version','file')
   run([start_path '/vlfeat-0.9.20/toolbox/vl_setup']);
 end
 
-run([start_path '/matconvnet_aristoteles/matlab/vl_setupnn']);
+run([start_path '/matconvnet/matlab/vl_setupnn']);
 addpath([start_path '/netvlad/']);
 addpath([start_path '/relja_matlab']);
 addpath([start_path '/relja_matlab/matconvnet']);
